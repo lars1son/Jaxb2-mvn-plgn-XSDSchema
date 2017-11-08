@@ -1,0 +1,16 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <RetrieveCasesStatus_Response>
+
+            <Message_Header>
+                <RequestID></RequestID>
+                <Timestamp></Timestamp>
+            </Message_Header>
+            <Message_Body>
+            <Failure_Code></Failure_Code>
+            <Failure_Reason></Failure_Reason>
+            <Severity></Severity>
+            <Message_Body>
+        </RetrieveCasesStatus_Response>
+    </soap:Body>
+</soap:Envelope>

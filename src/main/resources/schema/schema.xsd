@@ -1,20 +1,120 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
 
-    <xs:element name="user" type="user" />
-    <xs:element name="userList" type="userList" />
 
-    <xs:complexType name="user">
-        <xs:all>
-            <xs:element name="id" type="xs:long" minOccurs="0" />
-            <xs:element name="name" type="xs:string" />
-            <xs:element name="registrationDate" type="xs:dateTime" />
-        </xs:all>
+    <!--<xs:complexType name="retrieveScanVehicleDetailsResponse">-->
+        <!--<xs:sequence>-->
+            <!--<xs:element minOccurs="0" name="RetrieveScanVehicleDetails_Response" type="RetrieveScanVehicleDetailsResponseData"/>-->
+        <!--</xs:sequence>-->
+    <!--</xs:complexType>-->
+
+
+    <!--<xs:complexType name="RetrieveScanVehicleDetailsResponseData">-->
+        <!--<xs:sequence>-->
+            <!--<xs:element name="Timestamp" type="xs:dateTime"/>-->
+
+            <!--<xs:element name="ScanVehicle">-->
+                <!--<xs:complexType>-->
+                    <!--<xs:sequence>-->
+                        <!--<xs:element name="ScanVehicleCode" type="xs:string"/>-->
+                        <!--<xs:element name="DriversName">-->
+                            <!--<xs:complexType>-->
+                                <!--<xs:sequence>-->
+                                    <!--<xs:element name="DriversCode" type="xs:string"/>-->
+                                    <!--<xs:element name="AverageTimePerScan" type="xs:int"/>-->
+                                    <!--<xs:element name="Neighbourhoods">-->
+                                        <!--<xs:complexType>-->
+                                            <!--<xs:sequence>-->
+                                                <!--<xs:element maxOccurs="unbounded" name="Neighbourhood">-->
+                                                    <!--<xs:complexType>-->
+                                                        <!--<xs:sequence>-->
+                                                            <!--<xs:element name="NumberOfScans" type="xs:int"/>-->
+                                                            <!--<xs:element name="NumberOfGeneratedPCNs" type="xs:int"/>-->
+                                                            <!--<xs:element name="NumberOfOSRRequests" type="xs:int"/>-->
+                                                            <!--<xs:element name="TimeEnteringNeighbourhood" type="xs:dateTime"/>-->
+                                                            <!--<xs:element name="TimeExitingNeighbourhood" type="xs:dateTime"/>-->
+                                                            <!--<xs:element name="NeighbourhoodID" type="xs:string"/>-->
+                                                        <!--</xs:sequence>-->
+                                                    <!--</xs:complexType>-->
+                                                <!--</xs:element>-->
+                                            <!--</xs:sequence>-->
+                                        <!--</xs:complexType>-->
+                                    <!--</xs:element>-->
+                                <!--</xs:sequence>-->
+                            <!--</xs:complexType>-->
+                        <!--</xs:element>-->
+                    <!--</xs:sequence>-->
+                <!--</xs:complexType>-->
+            <!--</xs:element>-->
+            <!--<xs:element minOccurs="0" name="Failure_Code" type="xs:string"/>-->
+            <!--<xs:element minOccurs="0" name="Failure_Reason" type="xs:string"/>-->
+            <!--<xs:element minOccurs="0" name="Severity" type="xs:string"/>-->
+        <!--</xs:sequence>-->
+    <!--</xs:complexType>-->
+
+
+
+<xs:element name="RetrieveCasesStatus_Response" type="RetrieveCasesStatusResponse" />
+    <xs:complexType name="RetrieveCasesStatusResponse">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="Timestamp" type="xs:dateTime"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="ImageReviewers">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="1" maxOccurs="unbounded" name="ImageReviewer" >
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="1" name="ImageReviewerID" type="xs:string"/>
+                                <xs:element minOccurs="1" name="ImageReviewerName" type="xs:string"/>
+                                <xs:element minOccurs="1" name="StartTime" type="xs:dateTime"/>
+                                <xs:element minOccurs="0" name="EndTime" type="xs:date"/>
+                                <xs:element minOccurs="0" name="Cases">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="0" maxOccurs="unbounded" name="Case">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="CaseID" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+                                                        <xs:element name="CaseStartTime" type="xs:dateTime" minOccurs="0"/>
+                                                        <xs:element name="CaseEndTime" type="xs:dateTime" minOccurs="0"/>
+                                                        <xs:element name="VerdictType" type="xs:string" minOccurs="0"/>
+                                                    </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                        </xs:element>
+
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="userList">
+
+    <xs:element name="RetrieveCasesStatus_FailureResponse" type="RetrieveCasesStatusFailureResponse" />
+    <xs:complexType name="RetrieveCasesStatusFailureResponse">
         <xs:sequence>
-            <xs:element name="user" type="user" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="Message_Header">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="1" name="RequestID" type="xs:string" />
+                        <xs:element minOccurs="1" name="Timestamp" type="xs:dateTime"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Message_Body">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="1" name="Failure_Code" type="xs:string"/>
+                        <xs:element minOccurs="1" name="Failure_Reason" type="xs:string"/>
+                        <xs:element minOccurs="1" name="Severity" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
